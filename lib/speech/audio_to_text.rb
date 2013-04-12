@@ -62,7 +62,7 @@ module Speech
           data = JSON.parse(easy.body_str)
           self.captured_json['status'] = data['status']
           self.captured_json['id'] = data['id']
-          self.captured_json['hypotheses'] = data['hypotheses'].map {|ut| [ut['utterance'], ut['confidence']] } 
+          self.captured_json['hypotheses'] = data['hypotheses'].map {|ut| [ut['utterance'], ut['confidence']] }
           if data.key?('hypotheses') && data['hypotheses'].first
             self.best_match_text += " " + data['hypotheses'].first['utterance']
             self.score += data['hypotheses'].first['confidence']
