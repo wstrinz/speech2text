@@ -48,13 +48,12 @@ module Speech
 
     def initialize(file)
       out = `ffmpeg -i #{file} 2>&1`.strip
-      # puts "out: #{out}"
-      # if out.match(/No such file or directory/)
-      #   raise "No such file or directory: #{file}"
-      # else
+      if out.match(/No such file or directory/)
+        raise "No such file or directory: #{file}"
+      else
         out = out.scan(/Duration: (.*),/)
         self.duration = Duration.new(out.first.first)
-      # end
+      end
     end
 
   end
